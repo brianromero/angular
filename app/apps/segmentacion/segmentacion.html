@@ -1,0 +1,71 @@
+<!-- Content area -->
+<div class="content">
+    <ul>
+        <table style="width:100%">
+                <tr>
+                    <th><label for="lDepartamento"><h5> Departamento </h5></label></th>
+                    <th>
+                        <select id="comboDepa" class="btn-group" (change)="comboDepa($event.target.value)">
+                            <option value="0">TODOS</option>
+                            <option value="1">LIMA</option>
+                        </select>
+                    </th>                    
+                    <th><label for="lProvincia"><h5> Provincia </h5></label></th>
+                    <th>
+                        <select id="comboProv" class="btn-group" (change)=comboProv($event.target.value)>
+                            <option value="0">TODOS</option>
+                        </select>
+                    </th>
+                    <th><label for="lDistrito"><h5> Distrito </h5></label></th>
+                    <th>
+                        <select id="comboDis" class="btn-group" (change)=comboDis($event.target.value)>
+                            <option value="0">TODOS</option>                            
+                        </select>
+                    </th>
+                    <th><label for="lArea"><h5> Área </h5></label></th>
+                    <th>
+                        <select id="comboArea" class="btn-group" (change)=comboArea($event.target.value)>
+                            <option value="0">TODOS</option>
+                        </select>
+                    </th>
+                    <th><label for="lZona"><h5> Zona </h5></label></th>
+                    <th>
+                        <select id="comboZona" class="btn-group" (change)=comboZona($event.target.value)>
+                            <option value="0">TODOS</option>
+                        </select>
+                    </th>
+                    <th>
+                        <button type="button" (click)="procesar()" class="btn btn-primary">Procesar</button>
+                    </th>
+                </tr>
+        </table>
+    <!-- Footer -->
+    </ul>
+    <br/><br/><br/>
+    <a class="btn btn-default">EXCEL <i class="fa fa-download"></i></a>
+    <ul>
+           <td>
+               <div>
+                   <div id="tabla"></div>
+               </div>
+           </td>
+    </ul>
+
+    <div id="demo_pag1"></div>
+    <!--/Pagination dark grey-->
+    <br/>
+    <br/>
+    <div class="footer text-muted">
+        &copy; 2017.
+    </div>
+</div>
+<!-- /content area -->
+
+
+<script>
+    $(function () {
+        $("#demo_pag1").bs_pagination({
+            totalPages: 100
+        });
+    });
+</script>
