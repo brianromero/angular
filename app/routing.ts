@@ -27,7 +27,9 @@ function getRoutes(){
   results.push({ path: 'welcome', loadChildren:'app/core/welcome/welcome.module' })
   if(validsession){
       let modules :Array<string> = <Array<string>>session[0]['routes'];
+      console.log(modules)
       modules.map(module => results.push({path: module, loadChildren: 'app/apps/'+module+'/' + module + '.module' }))
+      
   }
   
   return results 

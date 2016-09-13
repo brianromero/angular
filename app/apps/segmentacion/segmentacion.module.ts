@@ -1,61 +1,23 @@
 import {Component} from '@angular/core';
 import { NgModule }           from '@angular/core';
 import { Routes, RouterModule }  from '@angular/router';
+import {SegmentacionService} from './segmentacion.service';
 
 
 @Component({
-    templateUrl: 'app/apps/segmentacion/segmentacion.html' 
+    templateUrl: 'app/apps/segmentacion/segmentacion.html',
+    providers:[SegmentacionService]
 })
 
 class Segmentacion {
-
-  comboInicial(){
-
+  constructor(private segmentacionservice:SegmentacionService){
+    this.cargarDepas()
   }
 
-  filtroDepa(comboDepa){
-    console.log(comboDepa);    
-  }
-
-  comboDepa(comboDepa) {
-    //$('#comboPro').children().remove()
-    //eval("$('#comboPro').append('<option value=0>TODOS</option>');")
-    console.log(comboDepa);  
-    this.combo()
-    this.actualizarTabla()
-  }
-
-  comboProv(comboPro) {
-    console.log(comboPro);  
-    this.combo()
-    this.actualizarTabla()
-  }
-
-  comboDis(comboDis) {
-    console.log(comboDis);  
-    this.combo()
-    this.actualizarTabla()
-  }
-
-  comboArea(comboArea) {
-    console.log(comboArea);  
-    this.combo()
-    this.actualizarTabla()
-  }
-
-  comboZona(comboZona) {
-    console.log(comboZona);  
-    this.combo()
-    this.actualizarTabla()
-  }
-  
-  actualizarTabla() {
-    console.log("actualiza tabla")
-    return "hola mundo";
-  }
-
-  combo(){
-    console.log("actualiza filtro")
+  cargarDepas(ccdd:string="1"){
+    this.segmentacionservice.getDepartamentos(ccdd).subscribe(res=>{
+      console.log(res)
+    })
   }
 
 }

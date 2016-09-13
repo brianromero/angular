@@ -11,53 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var core_2 = require('@angular/core');
 var router_1 = require('@angular/router');
+var segmentacion_service_1 = require('./segmentacion.service');
 var Segmentacion = (function () {
-    function Segmentacion() {
+    function Segmentacion(segmentacionservice) {
+        this.segmentacionservice = segmentacionservice;
+        this.cargarDepas();
     }
-    Segmentacion.prototype.comboInicial = function () {
-    };
-    Segmentacion.prototype.filtroDepa = function (comboDepa) {
-        console.log(comboDepa);
-    };
-    Segmentacion.prototype.comboDepa = function (comboDepa) {
-        //$('#comboPro').children().remove()
-        //eval("$('#comboPro').append('<option value=0>TODOS</option>');")
-        console.log(comboDepa);
-        this.combo();
-        this.actualizarTabla();
-    };
-    Segmentacion.prototype.comboProv = function (comboPro) {
-        console.log(comboPro);
-        this.combo();
-        this.actualizarTabla();
-    };
-    Segmentacion.prototype.comboDis = function (comboDis) {
-        console.log(comboDis);
-        this.combo();
-        this.actualizarTabla();
-    };
-    Segmentacion.prototype.comboArea = function (comboArea) {
-        console.log(comboArea);
-        this.combo();
-        this.actualizarTabla();
-    };
-    Segmentacion.prototype.comboZona = function (comboZona) {
-        console.log(comboZona);
-        this.combo();
-        this.actualizarTabla();
-    };
-    Segmentacion.prototype.actualizarTabla = function () {
-        console.log("actualiza tabla");
-        return "hola mundo";
-    };
-    Segmentacion.prototype.combo = function () {
-        console.log("actualiza filtro");
+    Segmentacion.prototype.cargarDepas = function (ccdd) {
+        if (ccdd === void 0) { ccdd = "1"; }
+        this.segmentacionservice.getDepartamentos(ccdd).subscribe(function (res) {
+            console.log(res);
+        });
     };
     Segmentacion = __decorate([
         core_1.Component({
-            templateUrl: 'app/apps/segmentacion/segmentacion.html'
+            templateUrl: 'app/apps/segmentacion/segmentacion.html',
+            providers: [segmentacion_service_1.SegmentacionService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [segmentacion_service_1.SegmentacionService])
     ], Segmentacion);
     return Segmentacion;
 }());

@@ -28,34 +28,26 @@ import 'rxjs/add/operator/toPromise';
 export class SegmentacionService {
     constructor(private http: Http) {}
 
-    private loginUrl: string = 'http://192.168.200.123:8000/authentication/login/';
+    private depaUrl: string = 'http://192.168.200.123:8080/recargaDepa/';
+    private provUrl: string = 'http://192.168.200.123:8080/recargaProv/';
+    private distUrl: string = 'http://192.168.200.123:8080/recargaDis/';
     private auth;
 
-    getCookie(name) {
-        let value = "; " + document.cookie;
-        let parts = value.split("; " + name + "=");
-        if (parts.length == 2)
-            return parts.pop().split(";").shift();
+    getDepartamentos(ccdd: string): Observable < Object > {
+        let url: string = this.depaUrl + ccdd;
+        return this.http.get(url).map(this.extractData).catch(this.handleError)
     }
 
-    doLogin(queryparameters:string): Observable < Object > {
-
-        let _body = queryparameters;
-        return this.http.get(this.loginUrl+_body).map(this.extractData).catch(this.handleError)
-
+    getProvincias(ccdd: string, ccpp:string): Observable < Object > {
+        let queryparameters:string = `${ccdd}/${ccpp}`;
+        let url: string = this.provUrl+queryparameters;
+        return this.http.get(url).map(this.extractData).catch(this.handleError)
     }
 
-    logout(key: string = '') {
-        localStorage.removeItem(key === '' ? 'usuario' : key)
-    }
-
-    getJsonSession(key: string = '') {
-        return JSON.parse(localStorage.getItem(key === '' ? 'usuario' : key))
-    }
-
-    isValidSession(key: string = ''): boolean {
-        let sesion = localStorage.getItem(key === '' ? 'usuario' : key)
-        return sesion == null ? false : true
+    getDistritos(ccdd: string, ccpp:string, ccdi:string): Observable < Object > {
+        let queryparameters:string = `${ccdd}/${ccpp}/${ccdi}`;
+        let url: string = this.distUrl + queryparameters;
+        return this.http.get(url).map(this.extractData).catch(this.handleError)
     }
 
     private extractData(res: Response) {

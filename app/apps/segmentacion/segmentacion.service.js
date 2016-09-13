@@ -21,30 +21,23 @@ require('rxjs/add/operator/toPromise');
 var SegmentacionService = (function () {
     function SegmentacionService(http) {
         this.http = http;
-        this.loginUrl = 'http://192.168.200.123:8000/authentication/login/';
+        this.depaUrl = 'http://192.168.200.123:8080/recargaDepa/';
+        this.provUrl = 'http://192.168.200.123:8080/recargaProv/';
+        this.distUrl = 'http://192.168.200.123:8080/recargaDis/';
     }
-    SegmentacionService.prototype.getCookie = function (name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2)
-            return parts.pop().split(";").shift();
+    SegmentacionService.prototype.getDepartamentos = function (ccdd) {
+        var url = this.depaUrl + ccdd;
+        return this.http.get(url).map(this.extractData).catch(this.handleError);
     };
-    SegmentacionService.prototype.doLogin = function (queryparameters) {
-        var _body = queryparameters;
-        return this.http.get(this.loginUrl + _body).map(this.extractData).catch(this.handleError);
+    SegmentacionService.prototype.getProvincias = function (ccdd, ccpp) {
+        var queryparameters = ccdd + "/" + ccpp;
+        var url = this.provUrl + queryparameters;
+        return this.http.get(url).map(this.extractData).catch(this.handleError);
     };
-    SegmentacionService.prototype.logout = function (key) {
-        if (key === void 0) { key = ''; }
-        localStorage.removeItem(key === '' ? 'usuario' : key);
-    };
-    SegmentacionService.prototype.getJsonSession = function (key) {
-        if (key === void 0) { key = ''; }
-        return JSON.parse(localStorage.getItem(key === '' ? 'usuario' : key));
-    };
-    SegmentacionService.prototype.isValidSession = function (key) {
-        if (key === void 0) { key = ''; }
-        var sesion = localStorage.getItem(key === '' ? 'usuario' : key);
-        return sesion == null ? false : true;
+    SegmentacionService.prototype.getDistritos = function (ccdd, ccpp, ccdi) {
+        var queryparameters = ccdd + "/" + ccpp + "/" + ccdi;
+        var url = this.distUrl + queryparameters;
+        return this.http.get(url).map(this.extractData).catch(this.handleError);
     };
     SegmentacionService.prototype.extractData = function (res) {
         var body = res.json();
