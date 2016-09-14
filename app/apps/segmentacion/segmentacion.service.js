@@ -25,6 +25,7 @@ var SegmentacionService = (function () {
         this.provUrl = 'http://192.168.200.123:8080/SegrecargaProv/';
         this.distUrl = 'http://192.168.200.123:8080/SegrecargaDis/';
         this.zonaUrl = 'http://192.168.200.123:8080/SegrecargaZona/';
+        this.tablaUrl = 'http://192.168.200.123:8080/SegrecargaTabla/';
     }
     SegmentacionService.prototype.getDepartamentos = function (ccdd) {
         var url = this.depaUrl + ccdd;
@@ -43,6 +44,11 @@ var SegmentacionService = (function () {
     SegmentacionService.prototype.getZona = function (ubigeo, zona) {
         var queryparameters = ubigeo + "/" + zona;
         var url = this.distUrl + queryparameters;
+        return this.http.get(url).map(this.extractData).catch(this.handleError);
+    };
+    SegmentacionService.prototype.getTabla = function (ubigeo, zona) {
+        var queryparameters = ubigeo + "/" + zona;
+        var url = this.tablaUrl + queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError);
     };
     SegmentacionService.prototype.extractData = function (res) {

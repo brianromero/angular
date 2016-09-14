@@ -32,6 +32,7 @@ export class SegmentacionService {
     private provUrl: string = 'http://192.168.200.123:8080/SegrecargaProv/';
     private distUrl: string = 'http://192.168.200.123:8080/SegrecargaDis/';
     private zonaUrl: string = 'http://192.168.200.123:8080/SegrecargaZona/';
+    private tablaUrl: string = 'http://192.168.200.123:8080/SegrecargaTabla/';
     
     getDepartamentos(ccdd: string): Observable < Object > {
         let url: string = this.depaUrl + ccdd;
@@ -53,6 +54,12 @@ export class SegmentacionService {
     getZona(ubigeo: string, zona:string): Observable < Object > {
         let queryparameters:string = `${ubigeo}/${zona}`;
         let url: string = this.distUrl + queryparameters;
+        return this.http.get(url).map(this.extractData).catch(this.handleError)
+    }
+
+    getTabla(ubigeo: string, zona:string): Observable < Object > {
+        let queryparameters:string = `${ubigeo}/${zona}`;
+        let url: string = this.tablaUrl + queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError)
     }
 
