@@ -28,37 +28,36 @@ import 'rxjs/add/operator/toPromise';
 export class SegmentacionService {
     constructor(private http: Http) {}
 
-    private depaUrl: string = 'http://192.168.200.123:8080/SegrecargaDepa/';
-    private provUrl: string = 'http://192.168.200.123:8080/SegrecargaProv/';
-    private distUrl: string = 'http://192.168.200.123:8080/SegrecargaDis/';
-    private zonaUrl: string = 'http://192.168.200.123:8080/SegrecargaZona/';
-    private tablaUrl: string = 'http://192.168.200.123:8080/SegrecargaTabla/';
+    private depaUrl: string = 'http://192.168.200.123:8080/segrecargaDepa/';
+    private provUrl: string = 'http://192.168.200.123:8080/segrecargaProv/';
+    private distUrl: string = 'http://192.168.200.123:8080/segrecargaDis/';
+    private zonaUrl: string = 'http://192.168.200.123:8080/segrecargaZona/';
+    private tablaUrl: string = 'http://192.168.200.123:8080/segrecargaTabla/';
     
-    getDepartamentos(ccdd: string): Observable < Object > {
-        let url: string = this.depaUrl + ccdd;
-        return this.http.get(url).map(this.extractData).catch(this.handleError)
+    getDepartamentos(): Observable < Object > {
+        return this.http.get(this.depaUrl).map(this.extractData).catch(this.handleError)
     }
 
     getProvincias(ccdd: string, ccpp:string): Observable < Object > {
-        let queryparameters:string = `${ccdd}/${ccpp}`;
+        let queryparameters:string = `${ccdd}/${ccpp}/`;
         let url: string = this.provUrl+queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError)
     }
 
     getDistritos(ccdd: string, ccpp:string, ccdi:string): Observable < Object > {
-        let queryparameters:string = `${ccdd}/${ccpp}/${ccdi}`;
+        let queryparameters:string = `${ccdd}/${ccpp}/${ccdi}/`;
         let url: string = this.distUrl + queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError)
     }
 
     getZona(ubigeo: string, zona:string): Observable < Object > {
-        let queryparameters:string = `${ubigeo}/${zona}`;
+        let queryparameters:string = `${ubigeo}/${zona}/`;
         let url: string = this.distUrl + queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError)
     }
 
     getTabla(ubigeo: string, zona:string): Observable < Object > {
-        let queryparameters:string = `${ubigeo}/${zona}`;
+        let queryparameters:string = `${ubigeo}/${zona}/`;
         let url: string = this.tablaUrl + queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError)
     }

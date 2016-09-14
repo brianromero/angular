@@ -5,8 +5,9 @@
                 <tr>
                     <th><label for="lDepartamento"><h5> Departamento </h5></label></th>
                     <th>
-                        <select id="comboDepa" class="btn-group" (change)="comboDepa($event.target.value)">
-                            <option value="0">TODOS</option>
+                        {{departamentos}}
+                        <select ng-for="#el of departamentos"  id="comboDepa" class="btn-group">
+                            {{el}}
                         </select>
                     </th>                    
                     <th><label for="lProvincia"><h5> Provincia </h5></label></th>

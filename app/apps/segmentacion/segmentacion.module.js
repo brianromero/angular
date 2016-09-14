@@ -17,32 +17,39 @@ var Segmentacion = (function () {
         this.segmentacionservice = segmentacionservice;
         this.cargarDepa();
     }
-    Segmentacion.prototype.cargarDepa = function (ccdd) {
-        if (ccdd === void 0) { ccdd = "1"; }
-        this.segmentacionservice.getDepartamentos(ccdd).subscribe(function (res) {
-            console.log(res);
+    Segmentacion.prototype.cargarDepa = function () {
+        var _this = this;
+        this.segmentacionservice.getDepartamentos().subscribe(function (res) {
+            _this.departamentos = res;
+            console.log(_this.departamentos);
         });
     };
     Segmentacion.prototype.cargarProv = function (ccdd, ccpp) {
-        if (ccdd === void 0) { ccdd = "1"; }
-        if (ccpp === void 0) { ccpp = "1"; }
+        var _this = this;
+        if (ccdd === void 0) { ccdd = "02"; }
+        if (ccpp === void 0) { ccpp = "0"; }
         this.segmentacionservice.getProvincias(ccdd, ccpp).subscribe(function (res) {
-            console.log(res);
+            _this.provincias = res;
+            console.log(_this.provincias);
         });
     };
     Segmentacion.prototype.cargarDis = function (ccdd, ccpp, ccdi) {
-        if (ccdd === void 0) { ccdd = "1"; }
-        if (ccpp === void 0) { ccpp = "1"; }
-        if (ccdi === void 0) { ccdi = "1"; }
+        var _this = this;
+        if (ccdd === void 0) { ccdd = "05"; }
+        if (ccpp === void 0) { ccpp = "11"; }
+        if (ccdi === void 0) { ccdi = "0"; }
         this.segmentacionservice.getDistritos(ccdd, ccpp, ccdi).subscribe(function (res) {
-            console.log(res);
+            _this.distritos = res;
+            console.log(_this.distritos);
         });
     };
     Segmentacion.prototype.cargarZona = function (ubigeo, zona) {
+        var _this = this;
         if (ubigeo === void 0) { ubigeo = "1"; }
         if (zona === void 0) { zona = "1"; }
         this.segmentacionservice.getZona(ubigeo, zona).subscribe(function (res) {
-            console.log(res);
+            _this.zonas = res;
+            console.log(_this.zonas);
         });
     };
     Segmentacion = __decorate([

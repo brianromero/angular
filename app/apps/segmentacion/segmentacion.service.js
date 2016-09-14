@@ -21,33 +21,32 @@ require('rxjs/add/operator/toPromise');
 var SegmentacionService = (function () {
     function SegmentacionService(http) {
         this.http = http;
-        this.depaUrl = 'http://192.168.200.123:8080/SegrecargaDepa/';
-        this.provUrl = 'http://192.168.200.123:8080/SegrecargaProv/';
-        this.distUrl = 'http://192.168.200.123:8080/SegrecargaDis/';
-        this.zonaUrl = 'http://192.168.200.123:8080/SegrecargaZona/';
-        this.tablaUrl = 'http://192.168.200.123:8080/SegrecargaTabla/';
+        this.depaUrl = 'http://192.168.200.123:8080/segrecargaDepa/';
+        this.provUrl = 'http://192.168.200.123:8080/segrecargaProv/';
+        this.distUrl = 'http://192.168.200.123:8080/segrecargaDis/';
+        this.zonaUrl = 'http://192.168.200.123:8080/segrecargaZona/';
+        this.tablaUrl = 'http://192.168.200.123:8080/segrecargaTabla/';
     }
-    SegmentacionService.prototype.getDepartamentos = function (ccdd) {
-        var url = this.depaUrl + ccdd;
-        return this.http.get(url).map(this.extractData).catch(this.handleError);
+    SegmentacionService.prototype.getDepartamentos = function () {
+        return this.http.get(this.depaUrl).map(this.extractData).catch(this.handleError);
     };
     SegmentacionService.prototype.getProvincias = function (ccdd, ccpp) {
-        var queryparameters = ccdd + "/" + ccpp;
+        var queryparameters = ccdd + "/" + ccpp + "/";
         var url = this.provUrl + queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError);
     };
     SegmentacionService.prototype.getDistritos = function (ccdd, ccpp, ccdi) {
-        var queryparameters = ccdd + "/" + ccpp + "/" + ccdi;
+        var queryparameters = ccdd + "/" + ccpp + "/" + ccdi + "/";
         var url = this.distUrl + queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError);
     };
     SegmentacionService.prototype.getZona = function (ubigeo, zona) {
-        var queryparameters = ubigeo + "/" + zona;
+        var queryparameters = ubigeo + "/" + zona + "/";
         var url = this.distUrl + queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError);
     };
     SegmentacionService.prototype.getTabla = function (ubigeo, zona) {
-        var queryparameters = ubigeo + "/" + zona;
+        var queryparameters = ubigeo + "/" + zona + "/";
         var url = this.tablaUrl + queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError);
     };

@@ -10,31 +10,40 @@ import {SegmentacionService} from './segmentacion.service';
 })
 
 class Segmentacion {
+  public departamentos; 
+  private provincias:Object;
+  private distritos:Object;
+  private zonas:Object;
+  
   constructor(private segmentacionservice:SegmentacionService){
     this.cargarDepa()
   }
 
-  cargarDepa(ccdd:string="1"){
-    this.segmentacionservice.getDepartamentos(ccdd).subscribe(res=>{
-      console.log(res)
+  cargarDepa(){
+    this.segmentacionservice.getDepartamentos().subscribe(res=>{
+      this.departamentos=res;
+      console.log(this.departamentos)
     })
   }
 
-  cargarProv(ccdd:string="1", ccpp:string="1"){
+  cargarProv(ccdd:string="02", ccpp:string="0"){
     this.segmentacionservice.getProvincias(ccdd, ccpp).subscribe(res=>{
-      console.log(res)
+      this.provincias=res
+      console.log(this.provincias)
     })
   }
 
-  cargarDis(ccdd:string="1", ccpp:string="1", ccdi:string="1"){
+  cargarDis(ccdd:string="05", ccpp:string="11", ccdi:string="0"){
     this.segmentacionservice.getDistritos(ccdd, ccpp, ccdi).subscribe(res=>{
-      console.log(res)
+      this.distritos=res
+      console.log(this.distritos)
     })
   }
 
   cargarZona(ubigeo:string="1", zona:string="1"){
     this.segmentacionservice.getZona(ubigeo, zona).subscribe(res=>{
-      console.log(res)
+      this.zonas=res
+      console.log(this.zonas)
     })
   }
 
