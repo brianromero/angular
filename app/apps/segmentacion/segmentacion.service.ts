@@ -28,11 +28,11 @@ import 'rxjs/add/operator/toPromise';
 export class SegmentacionService {
     constructor(private http: Http) {}
 
-    private depaUrl: string = 'http://192.168.200.123:8080/recargaDepa/';
-    private provUrl: string = 'http://192.168.200.123:8080/recargaProv/';
-    private distUrl: string = 'http://192.168.200.123:8080/recargaDis/';
-    private auth;
-
+    private depaUrl: string = 'http://192.168.200.123:8080/SegrecargaDepa/';
+    private provUrl: string = 'http://192.168.200.123:8080/SegrecargaProv/';
+    private distUrl: string = 'http://192.168.200.123:8080/SegrecargaDis/';
+    private zonaUrl: string = 'http://192.168.200.123:8080/SegrecargaZona/';
+    
     getDepartamentos(ccdd: string): Observable < Object > {
         let url: string = this.depaUrl + ccdd;
         return this.http.get(url).map(this.extractData).catch(this.handleError)
@@ -46,6 +46,12 @@ export class SegmentacionService {
 
     getDistritos(ccdd: string, ccpp:string, ccdi:string): Observable < Object > {
         let queryparameters:string = `${ccdd}/${ccpp}/${ccdi}`;
+        let url: string = this.distUrl + queryparameters;
+        return this.http.get(url).map(this.extractData).catch(this.handleError)
+    }
+
+    getZona(ubigeo: string, zona:string): Observable < Object > {
+        let queryparameters:string = `${ubigeo}/${zona}`;
         let url: string = this.distUrl + queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError)
     }

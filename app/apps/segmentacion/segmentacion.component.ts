@@ -47,14 +47,6 @@ export class SegmentacionComponent {
     }
 
     procesar() {
-        let url = `?comboDep=${this.departamento.ccdd}&comboProv=${this.provincia.ccpp}&comboDis=${this.distrito.ccdi}`
-        this.segmentacionservice.doLogin(url).subscribe(res => {
-            /*if(Object.keys(res).length === 0){
-                this.errorLogin = true;
-            }else{
-                document.location.reload();
-                localStorage.setItem('usuario',JSON.stringify(res));
-            }*/
-        })
+    
     }
 }

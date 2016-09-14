@@ -21,9 +21,10 @@ require('rxjs/add/operator/toPromise');
 var SegmentacionService = (function () {
     function SegmentacionService(http) {
         this.http = http;
-        this.depaUrl = 'http://192.168.200.123:8080/recargaDepa/';
-        this.provUrl = 'http://192.168.200.123:8080/recargaProv/';
-        this.distUrl = 'http://192.168.200.123:8080/recargaDis/';
+        this.depaUrl = 'http://192.168.200.123:8080/SegrecargaDepa/';
+        this.provUrl = 'http://192.168.200.123:8080/SegrecargaProv/';
+        this.distUrl = 'http://192.168.200.123:8080/SegrecargaDis/';
+        this.zonaUrl = 'http://192.168.200.123:8080/SegrecargaZona/';
     }
     SegmentacionService.prototype.getDepartamentos = function (ccdd) {
         var url = this.depaUrl + ccdd;
@@ -36,6 +37,11 @@ var SegmentacionService = (function () {
     };
     SegmentacionService.prototype.getDistritos = function (ccdd, ccpp, ccdi) {
         var queryparameters = ccdd + "/" + ccpp + "/" + ccdi;
+        var url = this.distUrl + queryparameters;
+        return this.http.get(url).map(this.extractData).catch(this.handleError);
+    };
+    SegmentacionService.prototype.getZona = function (ubigeo, zona) {
+        var queryparameters = ubigeo + "/" + zona;
         var url = this.distUrl + queryparameters;
         return this.http.get(url).map(this.extractData).catch(this.handleError);
     };

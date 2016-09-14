@@ -15,11 +15,33 @@ var segmentacion_service_1 = require('./segmentacion.service');
 var Segmentacion = (function () {
     function Segmentacion(segmentacionservice) {
         this.segmentacionservice = segmentacionservice;
-        this.cargarDepas();
+        this.cargarDepa();
     }
-    Segmentacion.prototype.cargarDepas = function (ccdd) {
+    Segmentacion.prototype.cargarDepa = function (ccdd) {
         if (ccdd === void 0) { ccdd = "1"; }
         this.segmentacionservice.getDepartamentos(ccdd).subscribe(function (res) {
+            console.log(res);
+        });
+    };
+    Segmentacion.prototype.cargarProv = function (ccdd, ccpp) {
+        if (ccdd === void 0) { ccdd = "1"; }
+        if (ccpp === void 0) { ccpp = "1"; }
+        this.segmentacionservice.getProvincias(ccdd, ccpp).subscribe(function (res) {
+            console.log(res);
+        });
+    };
+    Segmentacion.prototype.cargarDis = function (ccdd, ccpp, ccdi) {
+        if (ccdd === void 0) { ccdd = "1"; }
+        if (ccpp === void 0) { ccpp = "1"; }
+        if (ccdi === void 0) { ccdi = "1"; }
+        this.segmentacionservice.getDistritos(ccdd, ccpp, ccdi).subscribe(function (res) {
+            console.log(res);
+        });
+    };
+    Segmentacion.prototype.cargarZona = function (ubigeo, zona) {
+        if (ubigeo === void 0) { ubigeo = "1"; }
+        if (zona === void 0) { zona = "1"; }
+        this.segmentacionservice.getZona(ubigeo, zona).subscribe(function (res) {
             console.log(res);
         });
     };

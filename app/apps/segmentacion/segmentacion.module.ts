@@ -11,11 +11,29 @@ import {SegmentacionService} from './segmentacion.service';
 
 class Segmentacion {
   constructor(private segmentacionservice:SegmentacionService){
-    this.cargarDepas()
+    this.cargarDepa()
   }
 
-  cargarDepas(ccdd:string="1"){
+  cargarDepa(ccdd:string="1"){
     this.segmentacionservice.getDepartamentos(ccdd).subscribe(res=>{
+      console.log(res)
+    })
+  }
+
+  cargarProv(ccdd:string="1", ccpp:string="1"){
+    this.segmentacionservice.getProvincias(ccdd, ccpp).subscribe(res=>{
+      console.log(res)
+    })
+  }
+
+  cargarDis(ccdd:string="1", ccpp:string="1", ccdi:string="1"){
+    this.segmentacionservice.getDistritos(ccdd, ccpp, ccdi).subscribe(res=>{
+      console.log(res)
+    })
+  }
+
+  cargarZona(ubigeo:string="1", zona:string="1"){
+    this.segmentacionservice.getZona(ubigeo, zona).subscribe(res=>{
       console.log(res)
     })
   }

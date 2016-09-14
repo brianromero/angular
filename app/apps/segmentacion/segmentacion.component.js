@@ -32,15 +32,6 @@ var SegmentacionComponent = (function () {
         //}
     }
     SegmentacionComponent.prototype.procesar = function () {
-        var url = "?comboDep=" + this.departamento.ccdd + "&comboProv=" + this.provincia.ccpp + "&comboDis=" + this.distrito.ccdi;
-        this.segmentacionservice.doLogin(url).subscribe(function (res) {
-            /*if(Object.keys(res).length === 0){
-                this.errorLogin = true;
-            }else{
-                document.location.reload();
-                localStorage.setItem('usuario',JSON.stringify(res));
-            }*/
-        });
     };
     SegmentacionComponent = __decorate([
         core_1.Component({
