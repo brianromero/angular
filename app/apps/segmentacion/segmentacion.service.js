@@ -21,15 +21,25 @@ require('rxjs/add/operator/toPromise');
 var SegmentacionService = (function () {
     function SegmentacionService(http) {
         this.http = http;
-        this.depaUrl = 'http://192.168.200.123:8080/segrecargaDepa/';
-        this.provUrl = 'http://192.168.200.123:8080/segrecargaProv/';
-        this.distUrl = 'http://192.168.200.123:8080/segrecargaDis/';
-        this.zonaUrl = 'http://192.168.200.123:8080/segrecargaZona/';
-        this.tablaUrl = 'http://192.168.200.123:8080/segrecargaTabla/';
+        /*private depaUrl: string = 'http://127.0.0.1:8000/segrecargaDepa/';
+          private provUrl: string = 'http://127.0.0.1:8000/segrecargaProv/';
+          private distUrl: string = 'http://127.0.0.1:8000/segrecargaDis/';
+          private zonaUrl: string = 'http://127.0.0.1:8000/segrecargaZona/';
+          private tablaUrl: string = 'http://127.0.0.1:8000/segrecargaTabla/';*/
+        this.depaUrl = 'http://192.168.200.23:8080/segrecargaDepa/';
+        this.provUrl = 'http://192.168.200.23:8080/segrecargaProv/';
+        this.distUrl = 'http://192.168.200.23:8080/segrecargaDis/';
+        this.zonaUrl = 'http://192.168.200.23:8080/segrecargaZona/';
+        this.tablaUrl = 'http://192.168.200.23:8080/segrecargaTabla/';
     }
     SegmentacionService.prototype.getDepartamentos = function () {
         return this.http.get(this.depaUrl).map(this.extractData).catch(this.handleError);
     };
+    /*getDepartamentos(ccdd: string): Observable < Object > {
+        let queryparameters:string = `${ccdd}/`;
+        let url: string = this.depaUrl+queryparameters;
+        return this.http.get(url).map(this.extractData).catch(this.handleError)
+    }*/
     SegmentacionService.prototype.getProvincias = function (ccdd, ccpp) {
         var queryparameters = ccdd + "/" + ccpp + "/";
         var url = this.provUrl + queryparameters;

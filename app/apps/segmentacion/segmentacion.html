@@ -5,33 +5,32 @@
                 <tr>
                     <th><label for="lDepartamento"><h5> Departamento </h5></label></th>
                     <th>
-                        {{departamentos}}
                         <select ng-for="#el of departamentos"  id="comboDepa" class="btn-group">
-                            {{el}}
+                            <option value={{el.ccdd}}>  {{el.departamento}}</option>
                         </select>
                     </th>                    
                     <th><label for="lProvincia"><h5> Provincia </h5></label></th>
                     <th>
-                        <select id="comboProv" class="btn-group" (change)=comboProv($event.target.value)>
-                            <option value="0">TODOS</option>
+                        <select ng-for="#el of provincias"  id="comboProv" class="btn-group">
+                            <option value={{el.ccpp}}>  {{el.provincia}}</option>
                         </select>
                     </th>
                     <th><label for="lDistrito"><h5> Distrito </h5></label></th>
                     <th>
-                        <select id="comboDis" class="btn-group" (change)=comboDis($event.target.value)>
-                            <option value="0">TODOS</option>                            
+                        <select ng-for="#el of distritos"  id="comboDis" class="btn-group">
+                            <option value={{el.ccdi}}>  {{el.distrito}}</option>
                         </select>
                     </th>
                     <th><label for="lArea"><h5> Área </h5></label></th>
                     <th>
-                        <select id="comboArea" class="btn-group" (change)=comboArea($event.target.value)>
-                            <option value="0">TODOS</option>
+                        <select ng-for="#el of areas"  id="comboArea" class="btn-group">
+                            <option value={{el.ubigeo}}>  {{el.area}}</option>
                         </select>
                     </th>
                     <th><label for="lZona"><h5> Zona </h5></label></th>
                     <th>
-                        <select id="comboZona" class="btn-group" (change)=comboZona($event.target.value)>
-                            <option value="0">TODOS</option>
+                        <select ng-for="#el of zonas"  id="comboZona" class="btn-group">
+                            <option value={{el.ubigeo}}>  {{el.zona}}</option>
                         </select>
                     </th>
                     <th>
@@ -43,13 +42,36 @@
     </ul>
     <br/><br/><br/>
     <a class="btn btn-default">EXCEL <i class="fa fa-download"></i></a>
-    <ul>
-           <td>
-               <div>
-                   <div id="tabla"></div>
-               </div>
-           </td>
-    </ul>
+    <table class="table">
+        <thead class="thead-inverse">
+        <tr>
+            <th width="100px">Departamento</th>
+            <th width="100px">Provincia</th>
+            <th width="100px">Distrito</th>
+            <th width="100px">Zona / AER</th>
+            <th width="100px">Nro. de secciones</th>
+            <th width="100px">Nro. de AEU</th>
+            <th width="100px">Estado</th>
+            <th width="100px">Ver</th>
+            <th width="100px">Descargar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr nf-for="let registro of registros">
+            <td>{{registro.departamento}}</td>
+            <td>{{registro.provincia}}</td>
+            <td>{{registro.distrito}}</td>
+            <td>{{registro.zona}}</td>
+            <td>{{registro.nro_seccion}}</td>
+            <td>{{registro.nro_aeu}}</td>
+            <td>
+                <span class="label label-success">{{registro.estado_seg}}</span>
+            </td>
+            <td><a class="btn btn-default"> <i class="fa fa-eye"></i></a></td>
+            <td><a class="btn btn-default"> <i class="fa fa-download"></i></a></td>
+        </tr>        
+        </tbody>
+    </table>
 
     <div id="demo_pag1"></div>
     <!--/Pagination dark grey-->

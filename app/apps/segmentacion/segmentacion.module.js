@@ -24,6 +24,12 @@ var Segmentacion = (function () {
             console.log(_this.departamentos);
         });
     };
+    /*cargarDepa(ccdd:string="01"){
+      this.segmentacionservice.getDepartamentos().subscribe(res=>{
+        this.departamentos=res;
+        console.log(this.departamentos)
+      })
+    }*/
     Segmentacion.prototype.cargarProv = function (ccdd, ccpp) {
         var _this = this;
         if (ccdd === void 0) { ccdd = "02"; }

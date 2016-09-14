@@ -28,15 +28,27 @@ import 'rxjs/add/operator/toPromise';
 export class SegmentacionService {
     constructor(private http: Http) {}
 
-    private depaUrl: string = 'http://192.168.200.123:8080/segrecargaDepa/';
-    private provUrl: string = 'http://192.168.200.123:8080/segrecargaProv/';
-    private distUrl: string = 'http://192.168.200.123:8080/segrecargaDis/';
-    private zonaUrl: string = 'http://192.168.200.123:8080/segrecargaZona/';
-    private tablaUrl: string = 'http://192.168.200.123:8080/segrecargaTabla/';
+  /*private depaUrl: string = 'http://127.0.0.1:8000/segrecargaDepa/';
+    private provUrl: string = 'http://127.0.0.1:8000/segrecargaProv/';
+    private distUrl: string = 'http://127.0.0.1:8000/segrecargaDis/';
+    private zonaUrl: string = 'http://127.0.0.1:8000/segrecargaZona/';
+    private tablaUrl: string = 'http://127.0.0.1:8000/segrecargaTabla/';*/
+
+    private depaUrl: string = 'http://192.168.200.23:8080/segrecargaDepa/';
+    private provUrl: string = 'http://192.168.200.23:8080/segrecargaProv/';
+    private distUrl: string = 'http://192.168.200.23:8080/segrecargaDis/';
+    private zonaUrl: string = 'http://192.168.200.23:8080/segrecargaZona/';
+    private tablaUrl: string = 'http://192.168.200.23:8080/segrecargaTabla/';
     
     getDepartamentos(): Observable < Object > {
         return this.http.get(this.depaUrl).map(this.extractData).catch(this.handleError)
     }
+
+    /*getDepartamentos(ccdd: string): Observable < Object > {
+        let queryparameters:string = `${ccdd}/`;
+        let url: string = this.depaUrl+queryparameters;
+        return this.http.get(url).map(this.extractData).catch(this.handleError)
+    }*/
 
     getProvincias(ccdd: string, ccpp:string): Observable < Object > {
         let queryparameters:string = `${ccdd}/${ccpp}/`;

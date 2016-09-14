@@ -26,6 +26,13 @@ class Segmentacion {
     })
   }
 
+  /*cargarDepa(ccdd:string="01"){
+    this.segmentacionservice.getDepartamentos().subscribe(res=>{
+      this.departamentos=res;
+      console.log(this.departamentos)
+    })
+  }*/
+
   cargarProv(ccdd:string="02", ccpp:string="0"){
     this.segmentacionservice.getProvincias(ccdd, ccpp).subscribe(res=>{
       this.provincias=res
